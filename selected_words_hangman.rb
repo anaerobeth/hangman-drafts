@@ -30,7 +30,7 @@ while chances >= 1
   times_to_loop = target.count guess_letter
   puts times_to_loop
 
-  [1..times_to_loop].each do |times|
+  (1..times_to_loop).each do |times|
     puts "Loop number #{times}"
   end
   break
