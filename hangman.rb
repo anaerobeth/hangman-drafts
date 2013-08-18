@@ -16,22 +16,31 @@ while chances >= 1
   # print "Word: "
   # print word.to_s
   puts "Word: #{answer}"
-  print "Chances remaining: "
-  puts chances
+  puts "Chances remaining: #{chances}"
   print "Guess a single letter (a-z) or the entire word: "
   guess_letter = gets.chomp
+  if guesses.include?(guess_letter)
+  else
+    guesses = guesses.push(guess_letter)
+  end
+  # puts guesses
+  # break
 
 
   if guess_letter.length > 1
-    answer = guess_letter
+    guess_word = guess_letter
 
-    if answer == target
+    if guess_word == target
       puts "Congratulations, you've guessed the word!"
       break
     else
       puts "Sorry, you guessed wrong."
+      chances -= 1  # Decrease the number of chances if the guess was wrong
+      puts "Word: #{answer}"
+      puts "Chances remaining: #{chances}"
       puts "Guess a single letter (a-z) or the entire word: "
       guess_letter = gets.chomp
+      guesses = guesses.push(guess_letter)
     end
   end
 
@@ -43,7 +52,7 @@ while chances >= 1
   if occurence == 0
     puts "Sorry, no #{guess_letter}'s found."
     # puts "Your guess so far: #{answer}"
-    chances -= 1  # Decrease the numebr of chances if the guess was wrong
+    chances -= 1  # Decrease the number of chances if the guess was wrong
     puts
   else
     (1..occurence).each do |times|
