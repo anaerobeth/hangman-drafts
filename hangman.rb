@@ -10,15 +10,17 @@ puts "Welcome to Hangman!"
 answer = "______"
 target = word_bank.sample
 # puts target
+guesses = []
 
 while chances >= 1
   # print "Word: "
   # print word.to_s
-  # puts
+  puts "Word: #{answer}"
   print "Chances remaining: "
   puts chances
-  print "Guess a single letter (a-z) or the entire word:"
+  print "Guess a single letter (a-z) or the entire word: "
   guess_letter = gets.chomp
+
 
   if guess_letter.length > 1
     answer = guess_letter
@@ -40,8 +42,8 @@ while chances >= 1
 
   if occurence == 0
     puts "Sorry, no #{guess_letter}'s found."
-    puts "Your guess so far: #{answer}"
-    chances -= 1
+    # puts "Your guess so far: #{answer}"
+    chances -= 1  # Decrease the numebr of chances if the guess was wrong
     puts
   else
     (1..occurence).each do |times|
@@ -54,19 +56,19 @@ while chances >= 1
         starting_index = ind + 1
         # puts "At the end of the loop, starting index is: #{starting_index}"
         answer = word.join()
-
-    end
       end
+    end
+
     if answer == target
       puts "Congratulations, you've guessed the word!"
       break
     end
     puts "Found #{occurence} occurence(s) of the #{guess_letter} character."
-    puts "Your guess so far: #{answer}"
+    # puts "Your guess so far: #{answer}"
     puts
   end
 
-  if chances == 1
+  if chances == 0
     puts "You're out of chances, better luck next time..."
     puts "Sorry, the hidden word was '#{target}'."
   end
