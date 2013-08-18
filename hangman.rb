@@ -12,15 +12,24 @@ target = word_bank.sample
 # puts target
 guesses = []
 
-while chances >= 1
-  # print "Word: "
-  # print word.to_s
+def prompt(answer, chances)
   puts "Word: #{answer}"
   puts "Chances remaining: #{chances}"
   print "Guess a single letter (a-z) or the entire word: "
-  letter = gets.chomp
-  if guesses.include?(letter)
+  @letter = gets.chomp
+end
 
+prompt(answer, chances)
+
+while chances >= 1
+  # print "Word: "
+  # print word.to_s
+
+  prompt(answer, chances)
+
+  if guesses.include?(letter)
+    puts "You already guessed that letter, try again."
+    prompt(answer, chances)
   else
     guesses = guesses.push(letter)
   end
@@ -38,10 +47,7 @@ while chances >= 1
     else
       puts "Sorry, you guessed wrong."
       chances -= 1  # Decrease the number of chances if the guess was wrong
-      puts "Word: #{answer}"
-      puts "Chances remaining: #{chances}"
-      puts "Guess a single letter (a-z) or the entire word: "
-      letter = gets.chomp
+      prompt(answer, chances)
       guesses = guesses.push(letter)
     end
   end
@@ -55,6 +61,7 @@ while chances >= 1
     puts "Sorry, no #{letter}'s found."
     # puts "Your guess so far: #{answer}"
     chances -= 1  # Decrease the number of chances if the guess was wrong
+    prompt(answer, chances)
     puts
   else
     (1..count).each do |times|
@@ -76,6 +83,7 @@ while chances >= 1
     end
     puts "Found #{count} occurence(s) of the #{letter} character."
     # puts "Your guess so far: #{answer}"
+    prompt(answer, chances)
     puts
   end
 
