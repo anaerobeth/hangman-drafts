@@ -41,6 +41,7 @@ while chances >= 1
   if occurence == 0
     puts "Sorry, no #{guess_letter}'s found."
     puts "Your guess so far: #{answer}"
+    chances -= 1
     puts
   else
     (1..occurence).each do |times|
@@ -67,9 +68,10 @@ while chances >= 1
 
   if chances == 1
     puts "You're out of chances, better luck next time..."
+    puts "Sorry, the hidden word was '#{target}'."
   end
-  chances -= 1
+
 end
 
-puts "The word to be guessed was '#{target}'."
+
 puts "Thanks for playing!"
