@@ -27,26 +27,28 @@ while chances >= 1
 
   occurence = 0
 
-  times_to_loop = target.count guess_letter
-  puts times_to_loop
+  occurence = target.count guess_letter
+  puts "Number of occurences is: #{occurence}"
 
-  (1..times_to_loop).each do |times|
+
+  starting_index = 0
+  (1..occurence).each do |times|
     puts "Loop number #{times}"
-  end
-  break
-
-  if target.include?(guess_letter)
-    ind = target.index(guess_letter)
-    puts "Found index of #{guess_letter}: #{ind}"
-    occurence = occurence + 1
-    new_starting_index = ind + 1
-    if target.index(guess_letter, new_starting_index)
-      occurence = occurence + 1
+    puts "At the start of the loop, starting index is: #{starting_index}"
+    if target.index(guess_letter, starting_index)
+      ind = target.index(guess_letter, starting_index)
       puts "Found index of #{guess_letter}: #{ind}"
+      starting_index = ind + 1
+      puts "At the end of the loop, starting index is: #{starting_index}"
+      puts
     end
-    puts "Found #{occurence} occurence(s) of the #{guess_letter} character."
-  else
+  end
+
+
+  if occurence == 0
     puts "Sorry, no #{guess_letter}'s found."
+  else
+    puts "Found #{occurence} occurence(s) of the #{guess_letter} character."
   end
 
   if chances == 1
