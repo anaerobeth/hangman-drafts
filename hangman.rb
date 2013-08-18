@@ -18,17 +18,19 @@ while chances >= 1
   puts "Word: #{answer}"
   puts "Chances remaining: #{chances}"
   print "Guess a single letter (a-z) or the entire word: "
-  guess_letter = gets.chomp
-  if guesses.include?(guess_letter)
+  letter = gets.chomp
+  if guesses.include?(letter)
+
   else
-    guesses = guesses.push(guess_letter)
+    guesses = guesses.push(letter)
   end
+
   # puts guesses
   # break
 
 
-  if guess_letter.length > 1
-    guess_word = guess_letter
+  if letter.length > 1
+    guess_word = letter
 
     if guess_word == target
       puts "Congratulations, you've guessed the word!"
@@ -39,29 +41,29 @@ while chances >= 1
       puts "Word: #{answer}"
       puts "Chances remaining: #{chances}"
       puts "Guess a single letter (a-z) or the entire word: "
-      guess_letter = gets.chomp
-      guesses = guesses.push(guess_letter)
+      letter = gets.chomp
+      guesses = guesses.push(letter)
     end
   end
 
-  occurence = 0
-  occurence = target.count guess_letter
-  # puts "Number of occurences is: #{occurence}"
+  count = 0
+  count = target.count letter
+  # puts "Number of occurences is: #{count}"
   starting_index = 0
 
-  if occurence == 0
-    puts "Sorry, no #{guess_letter}'s found."
+  if count == 0
+    puts "Sorry, no #{letter}'s found."
     # puts "Your guess so far: #{answer}"
     chances -= 1  # Decrease the number of chances if the guess was wrong
     puts
   else
-    (1..occurence).each do |times|
+    (1..count).each do |times|
       # puts "Loop number #{times}"
       # puts "At the start of the loop, starting index is: #{starting_index}"
-      if target.index(guess_letter, starting_index)
-        ind = target.index(guess_letter, starting_index)
-        # puts "Found index of #{guess_letter}: #{ind}"
-        word[ind] = guess_letter
+      if target.index(letter, starting_index)
+        ind = target.index(letter, starting_index)
+        # puts "Found index of #{letter}: #{ind}"
+        word[ind] = letter
         starting_index = ind + 1
         # puts "At the end of the loop, starting index is: #{starting_index}"
         answer = word.join()
@@ -72,7 +74,7 @@ while chances >= 1
       puts "Congratulations, you've guessed the word!"
       break
     end
-    puts "Found #{occurence} occurence(s) of the #{guess_letter} character."
+    puts "Found #{count} occurence(s) of the #{letter} character."
     # puts "Your guess so far: #{answer}"
     puts
   end
